@@ -1,0 +1,14 @@
+#cloud-config
+
+fqdn: ${hostname}
+
+users:
+  - name: ${user}
+    groups: users
+    chpasswd:
+      expire: False
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    passwd: $6$jFYV9QUOYekJLChM$6aG9FTB./F0RQyGxhE47nNDRW.pjien3cVd5xBBA.3Ppi/2jgtU2g7iqIkSwDKneOgFh/Obez7GX6TGZDdzzC/
+    ssh_authorized_keys:
+    - ${ssh_public_key}
