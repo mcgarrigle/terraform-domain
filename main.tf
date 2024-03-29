@@ -16,7 +16,9 @@ resource "libvirt_cloudinit_disk" "cloudinit_disk" {
     user           = var.user
     ssh_public_key = var.ssh_public_key
   })
-  network_config =  file("${path.module}/cloud-init/network-config-dhcp")
+  network_config =  templatefile("${path.module}/cloud-init/network-config-dhcp", {
+    network_interface = var.network_interface
+  })
 }
 
 resource "libvirt_volume" "primary_disk" {

@@ -36,15 +36,24 @@ grep TF_VAR deployment.env
 ```
 ## Download and verify base image
 ```
+# Rocky Linux
+
 curl -O https://dl.rockylinux.org/pub/rocky/9.3/images/x86_64/Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2
 curl -O https://dl.rockylinux.org/pub/rocky/9.3/images/x86_64/Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2.CHECKSUM
 sha256sum --check Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2.CHECKSUM
+
+# Ubuntu Jammy
+
+curl -O https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img
 ```
 ## Create base image volume
 ```
 export LIBVIRT_DEFAULT_URI=qemu:///system
-virsh vol-create-as --pool filesystems --name rocky-base-9.3 --capacity 1g
-virsh vol-upload --pool filesystems --vol rocky-base-9.3 --file Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2
+virsh vol-create-as --pool filesystems --name rocky-base-9.3.qcow2 --capacity 1m
+virsh vol-upload --pool filesystems --vol rocky-base-9.3.qcow2 --file Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2
+
+virsh vol-create-as --pool filesystems --name ubuntu-jammy-base.qcow2 --capacity 1m
+virsh vol-upload --pool filesystems --vol ubuntu-jammy-base.qcow2 --file jammy-server-cloudimg-amd64-disk-kvm.img
 ```
 ## Deploy virtual machine
 ```

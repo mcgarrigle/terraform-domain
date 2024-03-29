@@ -22,6 +22,11 @@ variable "network_name" {
   default = "default"
 }
 
+variable "network_interface" {
+  type    = string
+  default = "eth0"
+}
+
 variable "user" {
   type = string
 }
