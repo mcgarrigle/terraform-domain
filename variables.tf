@@ -7,6 +7,16 @@ variable "guest_name" {
   default = "terraform_guest"
 }
 
+variable "fqdn" {
+  type    = string
+  default = "terraform_guest"
+}
+
+variable "hostname" {
+  type    = string
+  default = "terraform_guest"
+}
+
 variable "vcpu" {
   type    = number
   default = 1

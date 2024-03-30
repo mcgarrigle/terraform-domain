@@ -12,7 +12,8 @@ resource "libvirt_cloudinit_disk" "cloudinit_disk" {
   name           = "${var.guest_name}.iso"
   pool           = var.storage_pool
   user_data      = templatefile("${path.module}/cloud-init/user-data", {
-    hostname       = var.guest_name
+    fqdn           = var.fqdn    
+    hostname       = var.hostname
     user           = var.user
     ssh_public_key = var.ssh_public_key
   })

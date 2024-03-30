@@ -29,7 +29,7 @@ Review deployment-specific environment variables:
 grep TF_VAR deployment.env
   export TF_VAR_libvirt_uri="${LIBVIRT_DEFAULT_URI}"
   export TF_VAR_guest_name="example"
-  export TF_VAR_base_volume_name="rocky-base-9.3"
+  export TF_VAR_base_volume_name="base-rocky-9.3"
   export TF_VAR_base_volume_size=$(numfmt --from=auto 20Gi)
   export TF_VAR_user="${USER}"
   export TF_VAR_ssh_public_key="$(cat ~/.ssh/id_rsa.pub)"
@@ -49,11 +49,11 @@ curl -O https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd6
 ## Create base image volume
 ```
 export LIBVIRT_DEFAULT_URI=qemu:///system
-virsh vol-create-as --pool filesystems --name rocky-base-9.3.qcow2 --capacity 1m
-virsh vol-upload --pool filesystems --vol rocky-base-9.3.qcow2 --file Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2
+virsh vol-create-as --pool filesystems --name base-rocky-9.3.qcow2 --capacity 1m
+virsh vol-upload --pool filesystems --vol base-rocky-9.3.qcow2 --file Rocky-9-GenericCloud-Base-9.3-20231113.0.x86_64.qcow2
 
-virsh vol-create-as --pool filesystems --name ubuntu-jammy-base.qcow2 --capacity 1m
-virsh vol-upload --pool filesystems --vol ubuntu-jammy-base.qcow2 --file jammy-server-cloudimg-amd64-disk-kvm.img
+virsh vol-create-as --pool filesystems --name base-ubuntu-jammy.qcow2 --capacity 1m
+virsh vol-upload --pool filesystems --vol base-ubuntu-jammy.qcow2 --file jammy-server-cloudimg-amd64-disk-kvm.img
 ```
 ## Deploy virtual machine
 ```

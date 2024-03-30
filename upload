@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+virsh vol-create-as --pool filesystems --name $2 --capacity 1m
+virsh vol-upload --pool filesystems --vol $2 --file $1
