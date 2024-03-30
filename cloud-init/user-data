@@ -2,7 +2,6 @@
 
 preserve_hostname: false
 fqdn: ${fqdn}
-hostname: ${hostname}
 manage_etc_hosts: true
 
 users:

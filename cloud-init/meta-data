@@ -1,0 +1,4 @@
+{
+  "instance-id": "${guest_name}",
+  "local-hostname": "${hostname}",
+}
