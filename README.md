@@ -34,6 +34,12 @@ grep TF_VAR deployment.env
   export TF_VAR_user="${USER}"
   export TF_VAR_ssh_public_key="$(cat ~/.ssh/id_rsa.pub)"
 ```
+## Create filesystems pool
+```
+virsh pool-define-as --type dir --name filesystems --target /var/lib/libvirt/filesystems
+virsh pool-start filesystems
+virsh pool-autostart filesystems
+```
 ## Download and verify base image
 ```
 # Rocky Linux
